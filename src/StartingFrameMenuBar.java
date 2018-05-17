@@ -12,7 +12,7 @@ public class StartingFrameMenuBar extends JMenuBar {
     private SettingButton settingButton;
     private ExitButton exitButton;
 
-    public StartingFrameMenuBar(){
+    public StartingFrameMenuBar(JFrame mainFrame){
         JMenu downloadMenu = new JMenu("Download");
         JMenu helpMenu = new JMenu("Help");
 
@@ -23,7 +23,7 @@ public class StartingFrameMenuBar extends JMenuBar {
         this.pauseButton = new PauseButton();
         this.cancelButton = new CancelButton();
         this.removeButton = new RemoveButton();
-        this.settingButton = new SettingButton();
+        this.settingButton = new SettingButton(mainFrame);
         this.exitButton = new ExitButton();
 
         Dimension dimension2 = new Dimension(aboutSoftWareButton.getWidth(),20);
@@ -42,6 +42,8 @@ public class StartingFrameMenuBar extends JMenuBar {
 
         helpMenu.add(aboutSoftWareButton);
         helpMenu.add(aboutUsButton);
+
+        helpMenu.setLayout(new GridLayout(0,1));
 
         this.add(downloadMenu);
         this.add(helpMenu);

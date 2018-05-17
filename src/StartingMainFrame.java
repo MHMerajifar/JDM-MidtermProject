@@ -8,8 +8,8 @@ public class StartingMainFrame extends JFrame {
     private StartingFrameCenterPanel startingFrameCenterPanel;
 
     public StartingMainFrame(){
-        this.startingFrameMenuBar = new StartingFrameMenuBar();
-        this.startingFrameToolBar = new StartingFrameToolBar();
+        this.startingFrameMenuBar = new StartingFrameMenuBar(this);
+        this.startingFrameToolBar = new StartingFrameToolBar(this);
         this.startingFrameLeftPanel = new StartingFrameLeftPanel();
         this.startingFrameCenterPanel = new StartingFrameCenterPanel();
 

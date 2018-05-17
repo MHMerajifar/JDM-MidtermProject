@@ -9,21 +9,21 @@ public class StartingFrameToolBar extends JToolBar {
     private RemoveButton removeButton;
     private SettingButton settingButton;
 
-    public StartingFrameToolBar(){
+    public StartingFrameToolBar(JFrame mainFrame){
         this.newDownloadButton = new NewDownloadButton();
         this.resumeButton = new ResumeButton();
         this.pauseButton = new PauseButton();
         this.cancelButton = new CancelButton();
         this.removeButton = new RemoveButton();
-        this.settingButton = new SettingButton();
+        this.settingButton = new SettingButton(mainFrame);
 
         Dimension dimension = new Dimension(60,50);
         this.setPreferredSize(dimension);
 
         JPanel blankPanel1 = new JPanel();
         JPanel blankPanel2 = new JPanel();
-        blankPanel1.setBackground(Color.pink);
-        blankPanel2.setBackground(Color.pink);
+        blankPanel1.setBackground(Color.lightGray);
+        blankPanel2.setBackground(Color.lightGray);
 
         this.add(blankPanel1);
         this.add(blankPanel2);
@@ -36,7 +36,7 @@ public class StartingFrameToolBar extends JToolBar {
 
         this.setLayout(new GridLayout(1,0,10,10));
 
-        this.setBackground(Color.pink);
+        this.setBackground(Color.lightGray);
         this.setOpaque(true);
     }
 }
