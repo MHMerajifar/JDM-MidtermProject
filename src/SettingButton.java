@@ -9,14 +9,14 @@ public class SettingButton extends JButton {
     private static int numberOfSimultaneousDownloads = 100;
     private static String savingLocation = "Desktop";
 
-    public SettingButton(JFrame mainFrame){
+    public SettingButton(){
 
         ImageIcon newDownloadButtonImageIcon = new ImageIcon("C:\\Users\\sina\\IdeaProjects\\JDM-MidtermProject\\EagleGetIcons\\settings.png");
         this.setIcon(newDownloadButtonImageIcon);
 
         this.setToolTipText("Setting");
 
-        this.addActionListener(new SettingButtonHandler(mainFrame));
+        this.addActionListener(new SettingButtonHandler(new JFrame()));
     }
 
     private class SettingButtonHandler implements ActionListener{
