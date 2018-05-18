@@ -1,19 +1,30 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class Manager {
     /**
      * Now we want to make the basic containers of
      * the jdm with a main frame and some sub panels.
      */
-    private JFrame mainFrame;
-    private JPanel centerPanel;
+    public static JFrame mainFrame;
+    public static JPanel centerPanel;
     private JPanel leftPanel;
     private JPanel topPanel;
     private JToolBar toolBar;
     private JMenuBar menuBar;
+    /**
+     * This two array lists have the main
+     * information about the manager.
+     */
+    public static ArrayList<Download> downloads;
+    public static ArrayList<DownloadPanel> downloadPanels;
 
     public Manager(){
+        this.downloads = new ArrayList<>();
+        this.downloadPanels = new ArrayList<>();
 
         this.mainFrame = new JFrame("JDM");
         this.centerPanel = new JPanel();
@@ -27,7 +38,7 @@ public class Manager {
          */
         JMenu menu = new JMenu("Download");
 
-        menu.add(new NewDownloadButton());
+        menu.add(new NewDownloadButton(this.centerPanel));
         menu.add(new CancelButton());
         menu.add(new ResumeButton());
         menu.add(new PauseButton());
@@ -57,7 +68,7 @@ public class Manager {
         for (int i = 0; i < 2; i++){
             this.toolBar.add(new JPanel());
         }
-        this.toolBar.add(new NewDownloadButton());
+        this.toolBar.add(new NewDownloadButton(this.centerPanel));
         this.toolBar.add(new ResumeButton());
         this.toolBar.add(new PauseButton());
         this.toolBar.add(new CancelButton());
@@ -75,6 +86,11 @@ public class Manager {
         this.topPanel.add(this.toolBar);
 
         this.topPanel.setLayout(new GridLayout(0,1));
+        /**
+         * This part is dedicated to shaping
+         * center panel.
+         */
+        JScrollPane scroll = new JScrollPane(centerPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         /**
          * In this part the
          * left panel is shaped and added to the
@@ -95,6 +111,7 @@ public class Manager {
          */
         this.mainFrame.add(this.leftPanel,BorderLayout.WEST);
         this.mainFrame.add(this.topPanel,BorderLayout.NORTH);
+        this.mainFrame.add(scroll);
         /**
          * We are going to make and shape the main frame.
          */
@@ -103,4 +120,17 @@ public class Manager {
         this.mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.mainFrame.setVisible(true);
     }
+
+    public static void printDownloadPanels(){
+        Manager.centerPanel.removeAll();
+
+        Manager.centerPanel.setLayout(new GridLayout(100,1,10,10));
+
+        for (DownloadPanel downloadPanel:Manager.downloadPanels){
+            Manager.centerPanel.add(downloadPanel);
+        }
+
+        SwingUtilities.updateComponentTreeUI(Manager.mainFrame.getContentPane());
+    }
+
 }
