@@ -16,6 +16,10 @@ public class ExitButton extends JButton {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            Manager.fileManagement.openFileForWriting();
+            Manager.fileManagement.save();
+            Manager.fileManagement.closeFileForReading();
+
             System.exit(0);
         }
     }

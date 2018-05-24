@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.Random;
 
 /**
@@ -5,7 +6,7 @@ import java.util.Random;
  * that is happening and have all its status
  * and name and also URL
  */
-public class Download {
+public class Download implements Serializable{
     private String name;
     private String URL;
     private int size;
@@ -14,6 +15,7 @@ public class Download {
     0 : canceled
     1 : resumed
     2 : paused
+    3 : removed
      */
     private int status;
 

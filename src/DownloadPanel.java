@@ -36,6 +36,8 @@ public class DownloadPanel extends JPanel {
         }
         if (download.getStatus() == 2){
             this.status = new JLabel("   Paused!");
+        } if (download.getStatus() == 3){
+            this.status = new JLabel("   removed");
         }
 
         this.status.setBounds(480,10,80,20);

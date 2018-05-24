@@ -6,6 +6,10 @@ import java.util.ArrayList;
 
 public class Manager {
     /**
+     * File Management
+     */
+    public static FileManagement fileManagement;
+    /**
      * Now we want to make the basic containers of
      * the jdm with a main frame and some sub panels.
      */
@@ -23,12 +27,16 @@ public class Manager {
     public static ArrayList<DownloadPanel> downloadPanels;
     public static ArrayList<Download> finishedDownloads;
     public static ArrayList<Download> processingDownloads;
+    public static ArrayList<Download> removedDownloads;
 
     public Manager(){
+
+
         this.downloads = new ArrayList<>();
         this.downloadPanels = new ArrayList<>();
         this.finishedDownloads = new ArrayList<>();
         this.processingDownloads = new ArrayList<>();
+        this.removedDownloads = new ArrayList<>();
 
         this.mainFrame = new JFrame("JDM");
         this.centerPanel = new JPanel();
@@ -36,6 +44,14 @@ public class Manager {
         this.topPanel = new JPanel();
         this.toolBar = new JToolBar();
         this.menuBar = new JMenuBar();
+
+        /**
+         * getting data from file
+         */
+        this.fileManagement = new FileManagement();
+        this.fileManagement.openFileForReading();
+        this.fileManagement.getBack();
+        this.fileManagement.closeFileForWriting();
         /**
          * In this part I am going to shape the
          * menu bar.
@@ -204,9 +220,13 @@ public class Manager {
         Manager.downloadPanels.removeAll(downloadPanels);
 
         for (Download download: Manager.processingDownloads){
-            DownloadPanel downloadPanel = new DownloadPanel(download);
+            if (download.getStatus() != 3 ) {
+                DownloadPanel downloadPanel = new DownloadPanel(download);
 
-            Manager.downloadPanels.add(downloadPanel);
+                Manager.downloadPanels.add(downloadPanel);
+            }
+            else
+                System.out.println(download.getStatus());
         }
 
         for (DownloadPanel downloadPanel:Manager.downloadPanels){
