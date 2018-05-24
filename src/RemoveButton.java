@@ -25,7 +25,8 @@ public class RemoveButton extends JButton {
 
             for (Download download: Manager.downloads){
                 if (download.getName().equals(name)){
-                    Manager.downloads.remove(download);
+                    check = 1;
+                    Manager.downloads.remove(Manager.downloads.indexOf(download));
                 }
             }
 

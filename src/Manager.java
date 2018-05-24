@@ -21,10 +21,14 @@ public class Manager {
      */
     public static ArrayList<Download> downloads;
     public static ArrayList<DownloadPanel> downloadPanels;
+    public static ArrayList<Download> finishedDownloads;
+    public static ArrayList<Download> processingDownloads;
 
     public Manager(){
         this.downloads = new ArrayList<>();
         this.downloadPanels = new ArrayList<>();
+        this.finishedDownloads = new ArrayList<>();
+        this.processingDownloads = new ArrayList<>();
 
         this.mainFrame = new JFrame("JDM");
         this.centerPanel = new JPanel();
@@ -98,6 +102,7 @@ public class Manager {
          */
         this.leftPanel.setPreferredSize(new Dimension(200,700));
 
+        this.leftPanel.add(new AllDownloadsButton());
         this.leftPanel.add(new ProcessingButton());
         this.leftPanel.add(new FinishedButton());
         for (int i = 0; i < 10; i++)
@@ -125,6 +130,84 @@ public class Manager {
         Manager.centerPanel.removeAll();
 
         Manager.centerPanel.setLayout(new GridLayout(100,1,10,10));
+
+        Manager.downloadPanels.removeAll(downloadPanels);
+
+        for (Download download: Manager.downloads){
+            DownloadPanel downloadPanel = new DownloadPanel(download);
+
+            Manager.downloadPanels.add(downloadPanel);
+        }
+
+        for (DownloadPanel downloadPanel:Manager.downloadPanels){
+            Manager.centerPanel.add(downloadPanel);
+        }
+
+        SwingUtilities.updateComponentTreeUI(Manager.mainFrame.getContentPane());
+    }
+
+    public static void printFinishedDownloads(){
+        Manager.finishedDownloads.removeAll(Manager.finishedDownloads);
+        Manager.processingDownloads.removeAll(Manager.processingDownloads);
+
+        /**
+         * Filling the finished and processed lists
+         */
+        for (Download download: Manager.downloads){
+            if (download.getStatus() == 1){
+                Manager.processingDownloads.add(download);
+            }
+            if (download.isFinished()){
+                Manager.finishedDownloads.add(download);
+            }
+        }
+
+        Manager.centerPanel.removeAll();
+
+        Manager.centerPanel.setLayout(new GridLayout(100,1,10,10));
+
+        Manager.downloadPanels.removeAll(downloadPanels);
+
+        for (Download download: Manager.finishedDownloads){
+            DownloadPanel downloadPanel = new DownloadPanel(download);
+
+            Manager.downloadPanels.add(downloadPanel);
+        }
+
+        for (DownloadPanel downloadPanel:Manager.downloadPanels){
+            Manager.centerPanel.add(downloadPanel);
+        }
+
+        SwingUtilities.updateComponentTreeUI(Manager.mainFrame.getContentPane());
+    }
+
+    public static void printProcessingDownloads(){
+        Manager.finishedDownloads.removeAll(Manager.finishedDownloads);
+        Manager.processingDownloads.removeAll(Manager.processingDownloads);
+
+        /**
+         * Filling the finished and processed lists
+         */
+        for (Download download: Manager.downloads){
+            if (download.getStatus() == 1){
+                Manager.processingDownloads.add(download);
+            }
+            if (download.isFinished()){
+                Manager.finishedDownloads.add(download);
+            }
+        }
+
+        Manager.centerPanel.removeAll();
+
+        Manager.centerPanel.setLayout(new GridLayout(100,1,10,10));
+
+        Manager.downloadPanels.removeAll(downloadPanels);
+
+        for (Download download: Manager.processingDownloads){
+            DownloadPanel downloadPanel = new DownloadPanel(download);
+
+            Manager.downloadPanels.add(downloadPanel);
+        }
 
         for (DownloadPanel downloadPanel:Manager.downloadPanels){
             Manager.centerPanel.add(downloadPanel);

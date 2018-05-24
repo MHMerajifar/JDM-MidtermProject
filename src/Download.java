@@ -30,6 +30,10 @@ public class Download {
         return size+=500;
     }
 
+    public boolean isFinished(){
+        return false;
+    }
+
     public String getName() {
         return name;
     }

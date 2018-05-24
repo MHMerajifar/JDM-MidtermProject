@@ -37,7 +37,6 @@ public class NewDownloadButton extends JButton implements ActionListener {
             DownloadPanel downloadPanel = new DownloadPanel(download);
 
             Manager.downloads.add(download);
-            Manager.downloadPanels.add(downloadPanel);
 
             Manager.printDownloadPanels();
         }

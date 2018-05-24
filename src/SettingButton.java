@@ -32,7 +32,7 @@ public class SettingButton extends JButton {
 
             JPanel locationPanel = new JPanel();
             JLabel locationLabel = new JLabel("Enter the location for the files to save:");
-            JTextField locationField = new JTextField("Desktop");
+            JTextField locationField = new JTextField(savingLocation);
             locationField.addActionListener(new LocationTextHandler(locationField));
             locationPanel.add(locationLabel);
             locationPanel.add(locationField);

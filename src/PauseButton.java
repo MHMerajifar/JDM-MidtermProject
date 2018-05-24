@@ -29,6 +29,7 @@ public class PauseButton extends JButton {
                     if (download.getStatus() != 2){
                         download.setStatus(2);
                         System.out.println(download.getStatus());
+                        System.out.println(download.getStatus());
                     }
                 }
             }
