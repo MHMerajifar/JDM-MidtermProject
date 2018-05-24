@@ -151,7 +151,7 @@ public class Manager {
         Manager.processingDownloads.removeAll(Manager.processingDownloads);
 
         /**
-         * Filling the finished and processed lists
+         * Filling the finished and processed lists.
          */
         for (Download download: Manager.downloads){
             if (download.getStatus() == 1){
