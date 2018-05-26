@@ -82,6 +82,11 @@ public class Manager {
         this.menuBar.setBorder(BorderFactory.createTitledBorder("MENU"));
 
         this.menuBar.add(menu1);
+
+        JMenu menu2 = new JMenu("Save");
+        menu2.add(new SaveButton());
+
+        this.menuBar.add(menu2);
         /**
          * In this part tool bar is going to be shaped .
          */
@@ -121,6 +126,8 @@ public class Manager {
         this.leftPanel.add(new AllDownloadsButton());
         this.leftPanel.add(new ProcessingButton());
         this.leftPanel.add(new FinishedButton());
+        this.leftPanel.add(new SearchButton());
+
         for (int i = 0; i < 10; i++)
             this.leftPanel.add(new JPanel());
 
