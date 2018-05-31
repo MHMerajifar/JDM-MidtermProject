@@ -1,4 +1,5 @@
-import java.io.Serializable;
+import javax.swing.*;
+import java.io.*;
 import java.util.Random;
 
 /**
@@ -6,7 +7,7 @@ import java.util.Random;
  * that is happening and have all its status
  * and name and also URL
  */
-public class Download implements Serializable{
+public class Download implements Serializable, Runnable{
     private String name;
     private String URL;
     private int size;
@@ -18,12 +19,26 @@ public class Download implements Serializable{
     3 : removed
      */
     private int status;
+    private File file;
 
     public Download(String name, String URL) {
+        for (Download download: Manager.downloads){
+            if (download.getName().equals(name)){
+                JOptionPane.showMessageDialog(null,"This file already exits","Duplicate Error",1);
+            } else {
+                this.name = name;
+            }
+        }
         this.name = name;
         this.URL = URL;
         this.status = 1;
         this.size = sizeMaker();
+        this.file = new File("C:\\Users\\sina\\IdeaProjects\\JDM-MidtermProject\\DownloadFile\\"+this.name+".txt");
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            System.out.println("Error in creating a new file");
+        }
     }
 
     public static int sizeMaker(){
@@ -66,5 +81,14 @@ public class Download implements Serializable{
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public File getFile() {
+        return file;
+    }
+
+    @Override
+    public void run() {
+
     }
 }
