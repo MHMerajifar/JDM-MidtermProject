@@ -20,7 +20,7 @@ public class SearchButton extends JButton {
             search = JOptionPane.showInputDialog(null, "Search in here");
 
             for (Download download: Manager.downloads){
-                if (download.getName().contains(search) || download.getURL().contains(search)){
+                if (download.getDownloadName().contains(search) || download.getURLString().contains(search)){
                     searchedDownloads.add(download);
                 }
             }

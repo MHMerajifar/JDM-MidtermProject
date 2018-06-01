@@ -23,7 +23,7 @@ public class CancelButton extends JButton {
                     "you want to cancel");
 
             for (Download download: Manager.downloads){
-                if (download.getName().equals(name)){
+                if (download.getDownloadName().equals(name)){
                     check = 1;
                     if (download.getStatus() != 0){
                         download.setStatus(0);

@@ -28,7 +28,7 @@ public class FileManagement {
         for (Download download: Manager.downloads){
             try {
                 outputStream.writeObject(download);
-                System.out.println(download.getName());
+                System.out.println(download.getDownloadName());
                 System.out.println("done");
 
             } catch (IOException e) {

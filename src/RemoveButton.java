@@ -24,15 +24,16 @@ public class RemoveButton extends JButton {
                     "you want to remove");
 
             for (Download download: Manager.downloads){
-                if (download.getName().equals(name)){
+                if (download.getDownloadName().equals(name)){
                     check = 1;
                     if (download.getStatus() != 3) {
                         download.setStatus(3);
                         Manager.removedDownloads.add(download);
                         Manager.downloads.remove(Manager.downloads.indexOf(download));
                         for (Download download1 : Manager.removedDownloads){
-                            System.out.println(download1.getName());
+                            System.out.println(download1.getDownloadName());
                         }
+                        download.getFile().delete();
                     }
                 }
             }

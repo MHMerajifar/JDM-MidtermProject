@@ -24,12 +24,24 @@ public class PauseButton extends JButton {
                     "you want to pause progress");
 
             for (Download download: Manager.downloads){
-                if (download.getName().equals(name)){
+                if (download.getDownloadName().equals(name)){
                     check = 1;
                     if (download.getStatus() != 2){
                         download.setStatus(2);
                         System.out.println(download.getStatus());
                         System.out.println(download.getStatus());
+                        try {
+                            download.stopThread();
+                            download.sleep(10000);
+                            System.out.println("any changejklasdfffffffffa;jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj" +
+                                    "adssssssssssssssssssssssssss" +
+                                    "asddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\n" +
+                                    "afdddddddddddddddddddddd\n" +
+                                    "asfd;lkjsdfieoooooooooooooooooooooooooooooooooooooooooooooooooooooooooo\n" +
+                                    "as';fdlasd;fjkeowf[iajd ljl;kjdflkajsfo[eij\n");
+                        } catch (Exception e1) {
+                            System.out.println("Fuck yes ");
+                        }
                     }
                 }
             }

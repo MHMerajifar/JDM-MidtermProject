@@ -87,6 +87,10 @@ public class Manager {
         menu2.add(new SaveButton());
 
         this.menuBar.add(menu2);
+
+        JMenu menu3 = new JMenu("Sort");
+        menu3.add(new Sort());
+        this.menuBar.add(menu3);
         /**
          * In this part tool bar is going to be shaped .
          */

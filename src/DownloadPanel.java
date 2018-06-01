@@ -22,10 +22,10 @@ public class DownloadPanel extends JPanel {
         this.progressBar.setStringPainted(true);
         this.progressBar.setVisible(true);
 
-        this.label1 = new JLabel("Name: "+download.getName());
+        this.label1 = new JLabel("Name: "+download.getDownloadName());
         this.label1.setBounds(80,20,200,20);
 
-        this.label2 = new JLabel("URL: "+download.getURL());
+        this.label2 = new JLabel("URL: "+download.getURLString());
         this.label2.setBounds(280,20,200,20);
 
         if (download.getStatus() == 0){
